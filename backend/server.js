@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import mongoconnection from "./db/mongoconnection.js";
+import autoApply from "./routes/aply.route.js";
 
 // initialization
 const app = express();
@@ -32,3 +33,4 @@ app.listen(PORT, () => {
   });
 
 //   Aidding soem APis
+app.use('/apis/aply', autoApply);
