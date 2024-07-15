@@ -1,4 +1,7 @@
 import Aply from "../models/aply.model.js";
+import nodemailer from "nodemailer";
+
+
 
 export const createAply = async (req, res) => {
     const { fullName, email, typeofservices, description, imageUrls } = req.body;
