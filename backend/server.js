@@ -35,4 +35,4 @@ app.listen(PORT, () => {
 
 //   Aidding soem APis
 app.use('/apis/aply', autoApply);
-app.use('apis/auth', authRoutes)
+app.use('/apis/auth', authRoutes)

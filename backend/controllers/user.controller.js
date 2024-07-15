@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import User from '../models/user.model.js';
 
 // Adding a singup for user to the app...
 export const singup = async (req, res, next) =>{
