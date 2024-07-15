@@ -30,7 +30,7 @@ export const singup = async (req, res, next) => {
 };
 
 // Adding a signing  for user to the web application...
-const signin = async (req, res, next) => {
+export const signin = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
