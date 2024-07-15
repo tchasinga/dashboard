@@ -23,7 +23,7 @@ const mjmlTemplate = `
           Welcome to TECHSOL SOFTWARE KENYA.
         </mj-text>
         <mj-text align="left" color="#ffffff" font-size="15px" font-family="Open Sans, Helvetica, Arial, sans-serif" padding-left="25px" padding-right="25px">
-          Thank you for choosing TechSol Software Kenya! We're thrilled that you've applied for our services. Your application has been received and we'll get back to you shortly. If you have any questions in the meantime, feel free to reach out to us at <a href="mailto:Kiokoj81@gmail.com" style="color: #FEEB35;">Kiokoj81@gmail.com</a>.
+          Thank you for choosing TechSol Software Kenya! We're thrilled that you've applied for our services. Your application has been received and we'll get back to you shortly. If you have any questions in the meantime, feel free to reach out to us at <a href="mailto:Kiokoj81@gmail.com" style="color: #FEEB35;">Kiokoj81@gmail.com</a>
         </mj-text>
         <mj-text align="left" color="#ffffff" font-size="15px" font-family="Open Sans, Helvetica, Arial, sans-serif" padding-left="25px" padding-right="25px">
           Thanks,<br />
@@ -65,7 +65,6 @@ const mjmlTemplate = `
     </mj-section>
   </mj-body>
 </mjml>
-
 `;
 
 // THIS FUNCTION HAS PURPOSE TO SEND AN EMAIL TO THE USER WHEN USER IS SIGNING UP
@@ -87,7 +86,7 @@ export const createAply = async (req, res) => {
     await newAply.save();
     res.status(201).json({
       success: true,
-      message: 'Aply created successfully',
+      message: 'Your application was sent successfully',
       data: newAply,
     });
 
@@ -101,7 +100,7 @@ export const createAply = async (req, res) => {
     await transporter.sendMail({
       from: process.env.EMAIL,
       to: email,
-      subject: 'Aply created successfully',
+      subject: 'Your application was sent successfully',
       html: emailHtml,
     });
   } catch (error) {
