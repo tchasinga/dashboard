@@ -62,11 +62,11 @@ export const signin = async (req, res, next) => {
         secure: true,
       })
       .status(200)
-      .json({
-        token,
+      .json({ 
         user: userDetails,
         success: true,
         message: "User signed in successfully",
+        token,
       });
   } catch (error) {
     next(error);
