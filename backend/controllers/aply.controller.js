@@ -45,7 +45,7 @@ export const getAplyById = async (req, res) => {
         const aply = await Aply.findById(id);
         res.status(200).json({
             success : true,
-            message : 'Aply fetched successfully',
+            message : 'Aply fetched by signle data successfully',
             data : aply,
         });
     } catch (error) {
