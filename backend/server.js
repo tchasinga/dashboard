@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import mongoconnection from "./db/mongoconnection.js";
 
 // initialization
 const app = express();
@@ -19,5 +20,14 @@ app.use(
   })
 );
 
+dotenv.config();
+const PORT = process.env.PORT || 8000;
+
+
 app.use(express.json());
 app.use(cookieParser());
+
+app.listen(PORT, () => {
+    mongoconnection();
+    console.log(`server is running on port ${PORT}`);
+  });
