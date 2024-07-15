@@ -1,0 +1,23 @@
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
+// initialization
+const app = express();
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "*",
+      "https://messagge-tchatting.onrender.com",
+    ],
+    credentials: true,
+    allowedHeaders: "*", // or list specific headers if needed
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"],
+  })
+);
+
+app.use(express.json());
+app.use(cookieParser());
