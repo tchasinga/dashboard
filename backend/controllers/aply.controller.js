@@ -18,3 +18,20 @@ export const createAply = async (req, res) => {
         });
     }
 }
+
+export const getAply = async (req, res) => {
+    try {
+        const aplys = await Aply.find();
+        res.status(200).json({
+            success : true,
+            message : 'Aplys fetched successfully',
+            data : aplys,
+        });
+    } catch (error) {
+        res.status(404).json({
+            success : false,
+            message : 'Aplys not found',
+            error : error,
+        });
+    }
+}
