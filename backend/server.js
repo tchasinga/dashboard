@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import mongoconnection from "./db/mongoconnection.js";
 import autoApply from "./routes/aply.route.js";
+import authRoutes from './routes/user.route.js'
 
 // initialization
 const app = express();
@@ -34,3 +35,4 @@ app.listen(PORT, () => {
 
 //   Aidding soem APis
 app.use('/apis/aply', autoApply);
+app.use('apis/auth', authRoutes)
