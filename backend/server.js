@@ -31,3 +31,5 @@ app.listen(PORT, () => {
     mongoconnection();
     console.log(`server is running on port ${PORT}`);
   });
+
+//   Aidding soem APis
