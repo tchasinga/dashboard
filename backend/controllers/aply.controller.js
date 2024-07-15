@@ -19,6 +19,8 @@ export const createAply = async (req, res) => {
     }
 }
 
+
+// this will be used to view all the aplys in our admin pages
 export const getAply = async (req, res) => {
     try {
         const aplys = await Aply.find();
@@ -31,6 +33,25 @@ export const getAply = async (req, res) => {
         res.status(404).json({
             success : false,
             message : 'Aplys not found',
+            error : error,
+        });
+    }
+}
+
+// this will used to be aplied in our admins pages to view the aply details
+export const getAplyById = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const aply = await Aply.findById(id);
+        res.status(200).json({
+            success : true,
+            message : 'Aply fetched successfully',
+            data : aply,
+        });
+    } catch (error) {
+        res.status(404).json({
+            success : false,
+            message : 'Aply not found',
             error : error,
         });
     }
