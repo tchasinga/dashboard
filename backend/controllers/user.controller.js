@@ -16,7 +16,7 @@ export const singup = async (req, res, next) =>{
         const result = await newUser.save();
         res.status(201).json({
             success: true,
-            message: "User created successfully ...???",
+            message: "User created successfully ...",
             data: result,
         })
     } catch (error) {
