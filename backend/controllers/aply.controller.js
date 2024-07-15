@@ -2,6 +2,17 @@ import Aply from "../models/aply.model.js";
 import nodemailer from "nodemailer";
 
 
+// THIS FUNCTION HAS PURPOSE TO SENT AN EMAIL TO THE USER WHEN USER IS SING UP
+const transporter = nodemailer.createTransport({
+    host : 'smtp.gmail.com',
+    port : 465,
+    secure : true,
+    service : 'gmail',
+    auth : {
+        user : process.env.EMAIL,
+        pass : process.env.PASSWORD || "ezku kxhc uexi cqbg",
+    },
+})
 
 export const createAply = async (req, res) => {
     const { fullName, email, typeofservices, description, imageUrls } = req.body;
@@ -12,6 +23,14 @@ export const createAply = async (req, res) => {
             success : true,
             message : 'Aply created successfully',
             data : newAply,
+        });
+
+        // sending email to the user
+        await transporter.sendMail({
+            from : process.env.EMAIL,
+            to : email,
+            subject : 'Aply created successfully',
+            text : `Hello ${fullName}, your aply has been created successfully. We will get back to you soon.`,
         });
     } catch (error) {
         res.status(409).json({
