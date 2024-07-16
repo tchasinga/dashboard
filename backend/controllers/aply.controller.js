@@ -34,15 +34,15 @@ const mjmlTemplate = `
     <mj-section background-color="#ffffff" padding="20px">
       <mj-column width="33.33%">
         <mj-image src="https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Service 1" width="150px" padding="10px"></mj-image>
-        <mj-text align="center" color="#333333" font-size="16px" font-family="Open Sans, Helvetica, Arial, sans-serif" padding="10px">Web developement</mj-text>
+        <mj-text align="center" color="#333333" font-size="16px" font-family="Open Sans, Helvetica, Arial, sans-serif" padding="10px">Web development</mj-text>
       </mj-column>
       <mj-column width="33.33%">
         <mj-image src="https://images.pexels.com/photos/2447046/pexels-photo-2447046.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Service 2" width="150px" padding="10px"></mj-image>
-        <mj-text align="center" color="#333333" font-size="16px" font-family="Open Sans, Helvetica, Arial, sans-serif" padding="10px">App developement</mj-text>
+        <mj-text align="center" color="#333333" font-size="16px" font-family="Open Sans, Helvetica, Arial, sans-serif" padding="10px">App development</mj-text>
       </mj-column>
       <mj-column width="33.33%">
         <mj-image src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Service 3" width="150px" padding="10px"></mj-image>
-        <mj-text align="center" color="#333333" font-size="16px" font-family="Open Sans, Helvetica, Arial, sans-serif" padding="10px">Ui designer</mj-text>
+        <mj-text align="center" color="#333333" font-size="16px" font-family="Open Sans, Helvetica, Arial, sans-serif" padding="10px">UI designer</mj-text>
       </mj-column>
     </mj-section>
     <mj-section background-color="#009fe3" padding="20px">
@@ -67,7 +67,6 @@ const mjmlTemplate = `
 </mjml>
 `;
 
-// THIS FUNCTION HAS PURPOSE TO SEND AN EMAIL TO THE USER WHEN USER IS SIGNING UP
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 465,
@@ -75,15 +74,17 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL,
-    pass: process.env.PASSWORD || "ezku kxhc uexi cqbg",
+    pass: process.env.PASSWORD,
   },
 });
 
 export const createAply = async (req, res) => {
   const { fullName, email, typeofservices, description, imageUrls } = req.body;
+
   try {
     const newAply = new Aply({ fullName, email, typeofservices, description, imageUrls });
     await newAply.save();
+
     res.status(201).json({
       success: true,
       message: 'Your application was sent successfully',
@@ -104,14 +105,14 @@ export const createAply = async (req, res) => {
       html: emailHtml,
     });
   } catch (error) {
+    console.error('Error creating application:', error);
     res.status(409).json({
       success: false,
-      message: 'Aply creation failed',
-      error: error,
+      message: 'Aply creation failed, please check your code',
+      error: error.message,
     });
   }
 };
-
 
 // this will be used to view all the aplys in our admin pages
 export const getAply = async (req, res) => {
