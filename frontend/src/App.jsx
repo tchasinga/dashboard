@@ -13,7 +13,7 @@ function App() {
       <Route path="/signin" element={<SignIn />} />
     
       <Route element={<PrivateRoom/>}>
-        <Route path="/dashborad" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
     </Routes> 
     </BrowserRouter>
