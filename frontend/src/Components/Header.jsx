@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
     const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
-  return (
+  
+    return (
     <div className="py-5">
         <div className="mx-auto max-w-6xl flex justify-between items-center w-full flex-wrap">
              
@@ -30,4 +31,5 @@ export default function Header() {
         </div>
     </div>
   )
+  
 }
