@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { signInStart, singInSuccess, signInFailure } from '../redux/user/userSlice.js'
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice.js'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import { CircularProgress } from '@mui/material'
 
 export default function SignIn() {
   const [formData, setFormData] = useState({})
   const { loading } = useSelector(state => state.user && state.user.user)
-  const [showError, setShowError] = useState(false); // New state for error popup
-  const [showSuccess, setShowSuccess] = useState(false); // New state for success popup
+  const [showError, setShowError] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -15,7 +18,7 @@ export default function SignIn() {
     setFormData({ ...formData, [e.target.id]: e.target.value })
   }
 
-  const handlerSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       dispatch(signInStart())
@@ -28,21 +31,46 @@ export default function SignIn() {
         body: JSON.stringify(formData)
       })
       const data = await res.json()
-      if (data.success === false) {
-        dispatch(signInFailure(setShowError(true)))
+      if (!data.success) {
+        dispatch(signInFailure())
+        setShowError(true)
         return
       }
-      dispatch(singInSuccess(data))
-      setShowSuccess(true);
-      setShowError(false); 
+      dispatch(signInSuccess(data))
+      setShowSuccess(true)
+      setShowError(false)
       navigate('/dashboard')
 
     } catch (error) {
-      setShowError(true); // Show the Error component
-      dispatch(signInFailure(setShowError(true)))
+      setShowError(true)
+      dispatch(signInFailure())
     }
   }
+
   return (
-    <div>SignIn</div>
+    <div>
+      <form onSubmit={handleSubmit} className="">
+        <div className="flex ml-20 uppercase text-xl font-bold w-full">
+          <h1 className="text-red-500">Sign in here</h1>
+          <h1 className='text-sm'>ba</h1>
+        </div>
+        <TextField label="Set your email" required className="w-2/3" id="email" onChange={handleChange} variant='outlined' type='email' />
+        <TextField label="Set your password" id="password" onChange={handleChange} helperText="Don't share your password" className="w-2/3" variant='outlined' type='password' />
+        <Button type="submit" variant="contained" disabled={loading}>
+          {loading ? (
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-xs"><CircularProgress /></span>
+              <p>Loading...</p>
+            </div>
+          ) : "Sign-In now"}
+        </Button>
+      </form>
+      {showSuccess && (
+        <h1>Welcom</h1>
+      )}
+      {showError && (
+        <p>Please check your credentials.</p>
+      )}
+    </div>
   )
 }
