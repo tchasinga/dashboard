@@ -23,7 +23,7 @@ export default function SignIn() {
     try {
       dispatch(signInStart())
 
-      const res = await fetch('https://blogs-sharing-ideas-api.onrender.com/api/auth/signin', {
+      const res = await fetch(`http://localhost:8000/apis/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -37,9 +37,10 @@ export default function SignIn() {
         return
       }
       dispatch(signInSuccess(data))
+      navigate('/dashboard')
       setShowSuccess(true)
       setShowError(false)
-      navigate('/dashboard')
+      
 
     } catch (error) {
       setShowError(true)
@@ -51,7 +52,7 @@ export default function SignIn() {
     <div className="flex flex-col justify-center min-h-screen">
       <form onSubmit={handleSubmit} className='mx-auto max-w-3xl flex-col flex justify-center place-items-center h-[500px] border w-full gap-3'>
         <div className="flex justify-start items-start my-5">
-          <h1 className="">Sign in here</h1>
+          <h1 className="">Sign in as admin here</h1>
         </div>
         <TextField label="Set your email" required className="w-2/3" id="email" onChange={handleChange} variant='outlined' type='email' />      
         <TextField label="Set your password" id="password" onChange={handleChange} helperText="Don't share your password" className="w-2/3" variant='outlined' type='password' />
