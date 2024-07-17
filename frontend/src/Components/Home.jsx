@@ -1,6 +1,6 @@
 
 export default function Home() {
   return (
-    <div cna>Home</div>
+    <div className="">Home</div>
   )
 }
