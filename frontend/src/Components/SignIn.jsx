@@ -48,11 +48,10 @@ export default function SignIn() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="">
-        <div className="flex ml-20 uppercase text-xl font-bold w-full">
-          <h1 className="text-red-500">Sign in here</h1>
-          <h1 className='text-sm'>ba</h1>
+    <div className="flex flex-col justify-center min-h-screen">
+      <form onSubmit={handleSubmit} className='mx-auto max-w-3xl flex-col flex justify-center place-items-center h-[500px] border w-full'>
+        <div className="flex justify-start items-start my-5">
+          <h1 className="">Sign in here</h1>
         </div>
         <TextField label="Set your email" required className="w-2/3" id="email" onChange={handleChange} variant='outlined' type='email' />
         <TextField label="Set your password" id="password" onChange={handleChange} helperText="Don't share your password" className="w-2/3" variant='outlined' type='password' />
