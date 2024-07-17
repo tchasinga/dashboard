@@ -2,6 +2,7 @@ import './App.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Dashboard from './Components/Dashboard'
 import SignIn from './Components/SignIn'
+import PrivateRoom from './Pages/PrivateRoom'
 
 function App() {
 
