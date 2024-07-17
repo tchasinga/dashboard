@@ -5,12 +5,14 @@ import SignIn from './Components/SignIn'
 import PrivateRoom from './Pages/PrivateRoom'
 import Home from './Components/Home'
 import { useSelector } from 'react-redux'
+import Header from './Components/Header'
 
 function App() {
   const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
   return (
     <>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/" element={<Home />} />
