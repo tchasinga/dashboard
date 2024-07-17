@@ -1,6 +1,6 @@
 
 export default function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <div className="mx-auto max-w-screen-xl">Dashboard</div>
   )
 }
