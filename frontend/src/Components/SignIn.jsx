@@ -53,8 +53,8 @@ export default function SignIn() {
         <div className="flex justify-start items-start my-5">
           <h1 className="">Sign in here</h1>
         </div>
-        <TextField label="Set your email" required className="w-2/3" id="email" onChange={handleChange} variant='outlined' type='email' />
-        <TextField label="Set your password" id="password" onChange={handleChange} helperText="Don't share your password" className="w-2/3" variant='outlined' type='password' />
+        <TextField label="Set your email" required className="w-2/3 mb-2" id="email" onChange={handleChange} variant='outlined' type='email' />
+        <TextField label="Set your password" id="password" onChange={handleChange} helperText="Don't share your password" className="w-2/3 my-3" variant='outlined' type='password' />
         <Button type="submit" variant="contained" disabled={loading}>
           {loading ? (
             <div className="flex items-center justify-center gap-2">
