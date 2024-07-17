@@ -24,12 +24,16 @@ export default function Header() {
                     </Link>
                    </div>
                 ) : (
-                    <div className="text-lg">Welcome, Guest</div>
+                    <div className="text-lg">
+                        <Link to="/signin" className="cursor-pointer">
+                            <div className="text-white bg-green-800 p-2 flex justify-center rounded-[20px] w-[150px] hover:bg-orange-800 duration-1000">Sign In</div>
+                        </Link>
+                    </div>
                 )}
              </div>
 
         </div>
     </div>
   )
-  
+
 }
