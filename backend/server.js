@@ -14,9 +14,9 @@ app.use(
     origin: [
      "http://localhost:5173",
       "http://localhost:3000",
-      "https://techsolve-ten.vercel.app",
-      "https://dashboard-1-p0dl.onrender.com",
-     "*",
+    //   "https://techsolve-ten.vercel.app",
+    //   "https://dashboard-1-p0dl.onrender.com",
+    //  "*",
     ],
     credentials: true,
     allowedHeaders: "*", // or list specific headers if needed
