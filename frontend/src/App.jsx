@@ -22,7 +22,7 @@ function App() {
             element={currentUser ? <Dashboard /> : <Navigate to="/signin" />}
           />
         <Route element={<PrivateRoom />} />
-        <Route path='/Mydetails/:id' element={<Detailspages />} />    
+        <Route path='/Mydetails/:id' element={<Detailspages />} /> 
         </Routes>
       </BrowserRouter>
     </>
