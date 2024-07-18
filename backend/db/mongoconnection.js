@@ -3,10 +3,13 @@ import mongoose from 'mongoose'
 
 dotenv.config();
 
+const urlmongoDB = process.env.MONGODB_URL;
 const mongoconnection =async () => {
   try {
-    await mongoose.connect(process.env.MONGODBURL) || "mongodb+srv://tchasingajacques:202050081@mydashboardpanel.lsnxpki.mongodb.net/mydashboardpanel?retryWrites=true&w=majority&appName=mydashboardpanel"
-    console.log("✅ Connected successfully to MongoDB");
+    mongoose
+    .connect(urlmongoDB, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+      console.log("✅ Connected successfully to MongoDB");
+    })
   } catch (error) {
     console.error("❌ Failed to connect to MongoDB:");
   }
