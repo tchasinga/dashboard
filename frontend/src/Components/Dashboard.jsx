@@ -28,7 +28,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('https://dashboard-manager-apis.onrender.com/apis/aply/get')
+    axios.get('http://localhost:8000/apis/aply/get')
       .then(response => {
         if (response.data && Array.isArray(response.data.data)) {
           setData(response.data.data);
