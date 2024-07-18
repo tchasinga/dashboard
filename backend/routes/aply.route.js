@@ -5,6 +5,6 @@ const router = express.Router(); // Move this line up to initialize the router f
 
 router.post("/create", createAply);
 router.get("/get", getAply);
-router.get("/get/:id", getAplyById);
+router.get("/getbyid/:id", getAplyById);
 
 export default router;

@@ -106,7 +106,7 @@ export default function Dashboard() {
                   </TableHead>
                   <TableBody>
                     {data.map((row) => (
-                      <TableRow key={row._id} onClick={() => navigate(`/Mydetails${row._id}`)} style={{ cursor: 'pointer' }}>
+                      <TableRow key={row._id} onClick={() => navigate(`/Mydetails/${row._id}`)} style={{ cursor: 'pointer' }}>
                         <TableCell>{row._id}</TableCell>
                         <TableCell>{row.fullName}</TableCell>
                         <TableCell>{row.email}</TableCell>

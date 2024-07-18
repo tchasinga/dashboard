@@ -21,6 +21,7 @@ function App() {
             element={currentUser ? <Dashboard /> : <Navigate to="/signin" />}
           />
           <Route element={<PrivateRoom />} />
+          
         </Routes>
       </BrowserRouter>
     </>
