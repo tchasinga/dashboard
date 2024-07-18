@@ -19,12 +19,13 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:8000/apis/aply/get')
@@ -105,16 +106,15 @@ export default function Dashboard() {
                   </TableHead>
                   <TableBody>
                     {data.map((row) => (
-                      <Link key={row._id} to={`/Mydetails${row._id}`}>
-                        <TableRow >
+                      <TableRow key={row._id} onClick={() => navigate(`/Mydetails${row._id}`)} style={{ cursor: 'pointer' }}>
                         <TableCell>{row._id}</TableCell>
                         <TableCell>{row.fullName}</TableCell>
                         <TableCell>{row.email}</TableCell>
-                        <div >
-                        <TableCell className="w-[40px]">
-                          <p className='line-clamp-[1]'>{row.description}</p>
+                        <TableCell>
+                          <Box className="w-[40px]">
+                            <p className='line-clamp-[1]'>{row.description}</p>
+                          </Box>
                         </TableCell>
-                        </div>
                         <TableCell>{row.typeofservices}</TableCell>
                         <TableCell>{new Date(row.createdAt).toLocaleString()}</TableCell>
                         <TableCell>{new Date(row.updatedAt).toLocaleString()}</TableCell>
@@ -124,7 +124,6 @@ export default function Dashboard() {
                           )}
                         </TableCell>
                       </TableRow>
-                      </Link>
                     ))}
                   </TableBody>
                 </Table>
