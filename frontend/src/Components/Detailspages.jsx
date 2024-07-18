@@ -20,7 +20,7 @@ export default function Detailspages() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/apis/aply/getbyid/ + ${data._id}`)
+    axios.get(`http://localhost:8000/apis/aply/getbyid/${data._id}`)
       .then(response => {
         if (response.data) {
           setData(response.data);
