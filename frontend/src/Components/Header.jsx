@@ -30,7 +30,9 @@ export default function Header() {
         <div className="mx-auto max-w-6xl flex justify-between items-center w-full flex-wrap">
              
              <div className="text-xl">
-                <FaHome />
+               <Link to={'/'} >
+               <FaHome />
+               </Link>
              </div>
 
              <div className="">
