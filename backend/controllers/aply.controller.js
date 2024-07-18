@@ -151,3 +151,13 @@ export const getAplyById = async (req, res) => {
         });
     }
 }
+
+export const singout = (req, res, next) => {
+  try {
+    res.clearCookie("access_token").json({
+      message: "Signout successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
