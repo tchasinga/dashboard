@@ -11,7 +11,7 @@ export default function Header() {
     const handlerSingout = async() => {
         try {
           dispatch(signOutUserStart());
-          const res = await fetch(`https://dashboard-zknq.onrender.com/apis/aply/signout`)
+          const res = await fetch(`https://dashboard-manager-apis.onrender.com/apis/aply/signout`)
           const data = await res.json();
       
           if(data.success === false) {
