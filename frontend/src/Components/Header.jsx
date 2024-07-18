@@ -1,18 +1,38 @@
 
 import { FaHome } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { signOutUserFailure, signOutUserStart, signOutUserSuccess } from "../redux/user/userSlice.js";
 
 
 export default function Header() {
     const currentUser = useSelector((state) => state.user && state.user.user.currentUser)
-  
+    const dispatch = useDispatch();
+    const handlerSingout = async() => {
+        try {
+          dispatch(signOutUserStart());
+          const res = await fetch(`http://localhost:8000/apis/aply/signout`)
+          const data = await res.json();
+      
+          if(data.success === false) {
+            dispatch(signOutUserFailure(data.message));
+            return;
+          }
+          dispatch(signOutUserSuccess(data));
+        } catch (error) {
+          console.error(error);
+          dispatch(signOutUserFailure(error.message));
+        }
+      }
+
     return (
     <div className="py-5">
         <div className="mx-auto max-w-6xl flex justify-between items-center w-full flex-wrap">
              
              <div className="text-xl">
-                <FaHome />
+               <Link to={'/'} >
+               <FaHome />
+               </Link>
              </div>
 
              <div className="">
@@ -31,7 +51,10 @@ export default function Header() {
                     </div>
                 )}
              </div>
-
+             {/* Adding a sing-out function */}
+                 <div className="text-lg" >
+                        <div onClick={handlerSingout} className="text-white bg-green-800 p-2 flex justify-center rounded-[20px] w-[150px] cursor-pointer hover:bg-orange-800 duration-1000">Sign Out</div>
+                    </div>
         </div>
     </div>
   )
