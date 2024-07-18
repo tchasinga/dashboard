@@ -82,6 +82,12 @@ export default function Dashboard() {
         </Toolbar>
       </AppBar>
       
+      <Box my={4} display="flex" justifyContent="center" alignItems="center">
+        <Typography variant="h3" component="h1" gutterBottom color="primary">
+          Total Records: {data.length}
+        </Typography>
+      </Box>
+
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
           Dashboard
