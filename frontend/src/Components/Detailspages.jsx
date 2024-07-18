@@ -12,15 +12,17 @@ import {
 } from '@mui/material';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { useParams } from 'react-router-dom';
+
 
 export default function Detailspages() {
- 
+    const params = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/apis/aply/getbyid/${data._id}`)
+    axios.get(`http://localhost:8000/apis/aply/getbyid/${params.id}`)
       .then(response => {
         if (response.data) {
           setData(response.data);
@@ -36,7 +38,7 @@ export default function Detailspages() {
       .finally(() => {
         setLoading(false);
       });
-  }, [data._id]);
+  }, [params.id]);
 
   if (loading) {
     return (
@@ -62,13 +64,13 @@ export default function Detailspages() {
     <Container maxWidth="xl">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
-          {data.fullName}
+          {data.data.fullName}
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <Paper>
               <Carousel showThumbs={false} showStatus={false} infiniteLoop useKeyboardArrows>
-                {data.imageUrls && data.imageUrls.map((url, index) => (
+                {data.data.imageUrls && data.data.imageUrls.map((url, index) => (
                   <div key={index}>
                     <img src={url} alt={`${data.fullName} - ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
                   </div>
@@ -80,19 +82,19 @@ export default function Detailspages() {
             <Card>
               <CardContent>
                 <Typography variant="h6">Email:</Typography>
-                <Typography variant="body1" gutterBottom>{data.email}</Typography>
+                <Typography variant="body1" gutterBottom>{data.data.email}</Typography>
 
                 <Typography variant="h6">Description:</Typography>
-                <Typography variant="body1" gutterBottom>{data.description}</Typography>
+                <Typography variant="body1" gutterBottom>{data.data.description}</Typography>
 
                 <Typography variant="h6">Type of Services:</Typography>
-                <Typography variant="body1" gutterBottom>{data.typeofservices}</Typography>
+                <Typography variant="body1" gutterBottom>{data.data.typeofservices}</Typography>
 
                 <Typography variant="h6">Created At:</Typography>
-                <Typography variant="body1" gutterBottom>{new Date(data.createdAt).toLocaleString()}</Typography>
+                <Typography variant="body1" gutterBottom>{new Date(data.data.createdAt).toLocaleString()}</Typography>
 
                 <Typography variant="h6">Updated At:</Typography>
-                <Typography variant="body1" gutterBottom>{new Date(data.updatedAt).toLocaleString()}</Typography>
+                <Typography variant="body1" gutterBottom>{new Date(data.data.updatedAt).toLocaleString()}</Typography>
               </CardContent>
             </Card>
           </Grid>
