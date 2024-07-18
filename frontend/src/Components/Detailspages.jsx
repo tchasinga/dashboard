@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -15,13 +14,13 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 export default function Detailspages() {
-  const { id } = useParams();
+ 
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/apis/aply/getbyid/${data._id}`)
+    axios.get(`http://localhost:8000/apis/aply/getbyid/ + ${data._id}`)
       .then(response => {
         if (response.data) {
           setData(response.data);
@@ -37,7 +36,7 @@ export default function Detailspages() {
       .finally(() => {
         setLoading(false);
       });
-  }, [id]);
+  }, [data._id]);
 
   if (loading) {
     return (
