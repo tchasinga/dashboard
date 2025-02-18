@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice.js';
 import { TextField, Button, CircularProgress, Typography, Alert, Container, Box } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -21,7 +22,7 @@ export default function SignIn() {
     try {
       dispatch(signInStart());
 
-      const res = await fetch(`https://dashboard-manager-apis-connection.onrender.com/apis/auth/signin`, {
+      const res = await fetch(`http://localhost:5000/apis/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +56,7 @@ export default function SignIn() {
         }}
       >
         <Typography component="h1" variant="h5">
-          Sign in as admin
+          Welcom to Mymanager
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
@@ -81,6 +82,16 @@ export default function SignIn() {
             onChange={handleChange}
             helperText="Don't share your password"
           />
+
+          {/* don't have an account create one */}
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            align="center"
+          >
+            Don't have an account? <Link to="/signup" className='hover:text-green-800 font-semibold cursor-pointer'>Sign Up</Link>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+          </Typography>
+
           <Button
             type="submit"
             fullWidth
